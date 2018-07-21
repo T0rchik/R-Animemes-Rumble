@@ -20,6 +20,15 @@ public class PlayerController : PhysicsObject {
 
         move.x = Input.GetAxis("Horizontal");
 
+        if (move.x > 0 && grounded && rb2d.transform.eulerAngles.y != 0)
+        {
+            rb2d.transform.Rotate(new Vector2(0, -180));
+        }
+        else if (move.x < 0 && grounded && rb2d.transform.eulerAngles.y != 180)
+        {
+            rb2d.transform.Rotate(new Vector2(0, 180));
+        }
+
         if (Input.GetButtonDown("Jump") && grounded)
         {
             velocity.y = jumpTakeOffSpeed;
